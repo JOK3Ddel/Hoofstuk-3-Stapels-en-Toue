@@ -5,10 +5,22 @@ import java.lang.Character;
 public class InfixToPostfix {
     public static void main(String[] args) {
         // Variables
-        String expression = "5+2/(3-8)^5^2";
+        String[] arrExpressions = new String[3];
+        String expression;
+        arrExpressions[0] = "5+2/(3-8)^5^2";
+        arrExpressions[1] = "(5+12)*4-(6-2)*(7+8)";
+        arrExpressions[2] = "((56-6)/2)*4";
+        // List of expressions and expected outcome:
+            // 5+2/(3-8)^5^2 === 5238-52^^/+
+            // (5+12)*4-(6-2)*(7+8) === 512+4*62-78+*-
+            // ((56-6)/2)*4 === 566-2/4*
 
         // Main
-        System.out.println(infToPostf(expression));
+        for (int i = 0; i < arrExpressions.length; i++) {
+            expression = arrExpressions[i];
+            System.out.println(infToPostf(expression));
+        }
+        
     }
 
     // Check for operands
@@ -49,7 +61,7 @@ public class InfixToPostfix {
             Stack<Character> charStack = new Stack<>();
 
             // Final expression String
-            String output = new String("");
+            String output = new String(""); 
 
         // Iterate through characters in expression
         for (int i = 0; i < expression.length(); ++i) {
@@ -65,7 +77,7 @@ public class InfixToPostfix {
                 while (!charStack.isEmpty() && charStack.peek() != '(') {
                     output += charStack.pop();
                 }
-                
+
                 charStack.pop();
             } else {        // If operand is found take action based on precedence of operator
                 while (!charStack.isEmpty() && getPrecedence(c) <= getPrecedence(charStack.peek()) && hasLeftAssociativity(c)) {
