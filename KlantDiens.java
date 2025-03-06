@@ -46,5 +46,7 @@ public class KlantDiens {
             System.out.println("Service time for " + klant.getNaam() + ": " + klant.getDiensTyd()/100 + " seconds!");
             kliente.remove(klant);
         }
+
+        System.out.println("All clients have been helped!");
     }
 }
