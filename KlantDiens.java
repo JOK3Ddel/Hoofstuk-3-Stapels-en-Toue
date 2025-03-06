@@ -41,7 +41,6 @@ public class KlantDiens {
             try {
                 Thread.sleep(klant.getDiensTyd()*2);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             System.out.println("Service time for " + klant.getNaam() + ": " + klant.getDiensTyd()/100 + " seconds!");
